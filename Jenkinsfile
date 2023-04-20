@@ -17,9 +17,11 @@ pipeline {
         stage('Plan') {
 
             steps {
-                sh 'terraform init -upgrade'
-                sh "terraform validate"
-                sh "terraform plan"
+                dir('web_infra') {
+                    sh 'terraform init -upgrade'
+                    sh "terraform validate"
+                    sh "terraform plan"
+                }
             }
         }
         stage('Approval') {
@@ -30,17 +32,21 @@ pipeline {
            }
            
            steps {
-               script {
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan')]
+                dir('web_infra') {
+                    script {
+                        input message: "Do you want to apply the plan?",
+                        parameters: [text(name: 'Plan', description: 'Please review the plan')]
 
-               }
+                    }    
+                }
            }
        }
 
         stage('Apply') {
             steps {
-                sh "terraform apply --auto-approve"
+                dir('web_infra') {
+                    sh "terraform apply --auto-approve"
+                }
             }
         }
     }
