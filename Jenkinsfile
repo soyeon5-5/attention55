@@ -1,36 +1,29 @@
 pipeline {
 
     agent any
-
- 
-
     stages {
-
-  
-
         stage('Docker Build'){
+        when{
 
-            when{
+            expression {
 
-                expression {
-
-                    return env.cloneResult ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/
-
-                }
+                return env.cloneResult ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/
 
             }
 
-            steps {
+        }
 
-                script{
+        steps {
 
-                    try{
+            script{
 
-                        sh"""
+                try{
 
-                        #!/bin/bash
+                    sh"""
 
-                         cat>Dockerfile<
+                    #!/bin/bash
+
+                        cat>Dockerfile<
 
 # build stage
 
@@ -48,35 +41,36 @@ CMD ["gunicorn",   "--bind", "0.0.0.0:8000",  "flasktest:app", "-w", "2", "--tim
 
 EOF"""
 
-                        sh"""
+                    sh"""
 
-                        aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${ECR_URI}
+                    aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${ECR_URI}
 
-                        docker build -t ${env.JOB_NAME.toLowerCase()} .
+                    docker build -t ${env.JOB_NAME.toLowerCase()} .
 
-                        docker tag ${env.JOB_NAME.toLowerCase()}:latest ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
+                    docker tag ${env.JOB_NAME.toLowerCase()}:latest ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
 
-                        docker push ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
+                    docker push ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
 
-                        """
+                    """
 
-                         env.dockerBuildResult=true
+                        env.dockerBuildResult=true
 
-                    }catch(error){
+                }catch(error){
 
-                        print(error)
+                    print(error)
 
-                         env.dockerBuildResult=false
+                        env.dockerBuildResult=false
 
-                         currentBuild.result='FAILURE'
-
-                    }
+                        currentBuild.result='FAILURE'
 
                 }
 
             }
 
         }
+
+    }
+    }
 
         stage('Deploy pods'){
 
@@ -177,5 +171,3 @@ EOF"""
         }
 
     }
-
-}
