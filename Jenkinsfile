@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    env.cloneResult=true
     stages {
         stage('Docker Build'){
         when{
