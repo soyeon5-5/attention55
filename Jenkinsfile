@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
     stages {
         stage('Docker Build'){
@@ -51,7 +50,6 @@ EOF"""
 
                     docker push ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
                     
-                    echo ${ECR_TASK_URI}
 
                     """
 
