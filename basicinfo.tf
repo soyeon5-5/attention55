@@ -1,5 +1,5 @@
 #### Basic Information ####
-  
+
 # Provider Information
 provider "aws" {
   region = "ap-south-1"
