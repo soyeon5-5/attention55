@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh 'terraform init -upgrade'
                 sh "terraform validate"
+                sh 'terraform init'
                 sh "terraform plan"
             }
         }
