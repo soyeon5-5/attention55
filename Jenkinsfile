@@ -50,6 +50,8 @@ EOF"""
                     docker tag ${env.JOB_NAME.toLowerCase()}:latest ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
 
                     docker push ${ECR_TASK_URI}:ver${env.BUILD_NUMBER}
+                    
+                    echo ${ECR_TASK_URI}
 
                     """
 
@@ -69,7 +71,6 @@ EOF"""
 
         }
 
-    }
     }
 
         stage('Deploy pods'){
@@ -171,3 +172,4 @@ EOF"""
         }
 
     }
+}
