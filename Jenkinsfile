@@ -1,13 +1,12 @@
 pipeline {
     agent any
-    env.cloneResult=true
     stages {
         stage('Docker Build'){
         when{
 
             expression {
 
-                return env.cloneResult ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/
+                return env.cloneResult = true
 
             }
 
