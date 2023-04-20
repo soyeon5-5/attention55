@@ -1,10 +1,4 @@
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
   backend "s3" {
     bucket = "cute-sy-s3" #S3 버킷명
     key    = "1" #terraform.tfstate 파일위치 ex) aws-an2/jenkins_terraform_test/terraform.tfstate
