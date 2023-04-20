@@ -4,7 +4,7 @@ resource "aws_rds_cluster" "terra-rds" {
   db_subnet_group_name = aws_db_subnet_group.rds-grp2.name	
 
   cluster_identifier        = "aurora-rds"
-  availability_zones        = ["ap-south-1a", "ap-south-1c"]
+  availability_zones        = ["ap-northeast-2a", "ap-northeast-2c"]
   engine                  = "aurora-mysql"
   engine_version          = "5.7.mysql_aurora.2.11.2"
   db_cluster_instance_class = "db.r6g.2xlarge"

@@ -1,6 +1,6 @@
 resource "aws_rds_cluster" "example" {
   cluster_identifier        = "example"
-  availability_zones        = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  availability_zones        = ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"]
   engine                    = "mysql"
   db_cluster_instance_class = "db.r6gd.xlarge"
   storage_type              = "io1"

@@ -1,5 +1,5 @@
 resource "aws_instance" "terra-bastion-ubuntu" {
-  ami = "ami-0c6e5afdd23291f73"
+  ami = "ami-04cebc8d6c4f297a3"
   instance_type = "t2.micro"
 
   subnet_id = aws_subnet.terra-pub-a.id

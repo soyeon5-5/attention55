@@ -17,9 +17,9 @@ pipeline {
         stage('Plan') {
 
             steps {
-                sh 'terraform init -reconfigure'
+                ///sh 'terraform init -reconfigure'
+                sh 'terraform init -upgrade'
                 sh "terraform validate"
-                sh 'terraform init'
                 sh "terraform plan"
             }
         }
@@ -33,7 +33,7 @@ pipeline {
            steps {
                script {
                     input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan02')]
+                    parameters: [text(name: 'Plan', description: 'Please review the plan01')]
 
                }
            }

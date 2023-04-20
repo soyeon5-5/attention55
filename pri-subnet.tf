@@ -2,7 +2,7 @@
 resource "aws_subnet" "terra-web-a"{
     vpc_id  = aws_vpc.terra-vpc.id
     cidr_block  = "10.1.3.0/24"
-    availability_zone = "ap-south-1a"
+    availability_zone = "ap-northeast-2a"
 
     tags = {
         Name = "terra-web-a"
@@ -12,7 +12,7 @@ resource "aws_subnet" "terra-web-a"{
 resource "aws_subnet" "terra-web-c"{
     vpc_id  = aws_vpc.terra-vpc.id
     cidr_block  = "10.1.4.0/24"
-    availability_zone = "ap-south-1c"
+    availability_zone = "ap-northeast-2c"
 
     tags = {
         Name = "terra-web-c"
@@ -23,7 +23,7 @@ resource "aws_subnet" "terra-web-c"{
 resource "aws_subnet" "terra-db-a"{
     vpc_id  = aws_vpc.terra-vpc.id
     cidr_block  = "10.1.5.0/24"
-    availability_zone = "ap-south-1a"
+    availability_zone = "ap-northeast-2a"
 
     tags = {
         Name = "terra-db-a"
@@ -33,7 +33,7 @@ resource "aws_subnet" "terra-db-a"{
 resource "aws_subnet" "terra-db-c"{
     vpc_id  = aws_vpc.terra-vpc.id
     cidr_block  = "10.1.6.0/24"
-    availability_zone = "ap-south-1c"
+    availability_zone = "ap-northeast-2c"
 
     tags = {
         Name = "terra-db-c"

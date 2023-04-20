@@ -1,7 +1,7 @@
 # 인스턴스 생성
 resource "aws_instance" "terra-web-ins" {
-  ami                    = "ami-0c6e5afdd23291f73"
-  instance_type          = "t2.micro"
+  ami                    = "ami-04cebc8d6c4f297a3"
+  instance_type          = "t3.2xlarge"
   vpc_security_group_ids = [aws_security_group.SG-Web.id]
 
   user_data = <<-EOF
@@ -21,8 +21,8 @@ resource "aws_instance" "terra-web-ins" {
 
 # Luanch Configuration 설정
 resource "aws_launch_configuration" "terra-launch-config" {
-  image_id        = "ami-0c6e5afdd23291f73"
-  instance_type   = "t2.micro"
+  image_id        = "ami-04cebc8d6c4f297a3"
+  instance_type   = "t3.2xlarge"
   security_groups = [aws_security_group.SG-Web.id]
 
   user_data = <<-EOF

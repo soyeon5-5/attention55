@@ -1,6 +1,6 @@
 # 시작 구성
 resource "aws_launch_configuration" "web-launchconfig" {
-  image_id            = "ami-02eb7a4783e7e9317"
+  image_id            = "ami-04cebc8d6c4f297a3"
   instance_type   = "t3.2xlarge"
   security_groups = [aws_security_group.SG-Web.id]
   key_name        = "genkins-key"

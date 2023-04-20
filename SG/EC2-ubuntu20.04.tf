@@ -1,6 +1,6 @@
 resource "aws_instance" "terra-bastion-ubuntu" {
-  ami = "ami-0c6e5afdd23291f73"
-  instance_type = "t2.micro"
+  ami = "ami-04cebc8d6c4f297a3"
+  instance_type = "t3.2xlarge"
 
   subnet_id = aws_subnet.terra-pub-a.id
   associate_public_ip_address = true
@@ -16,8 +16,8 @@ resource "aws_instance" "terra-bastion-ubuntu" {
 }
 
 resource "aws_instance" "terra-web-a" {
-  ami = "ami-0c6e5afdd23291f73"
-  instance_type = "t2.micro"
+  ami = "ami-04cebc8d6c4f297a3"
+  instance_type = "t3.2xlarge"
 
   subnet_id = aws_subnet.terra-web-a.id
   key_name = "web01-key"
