@@ -1,44 +1,47 @@
 pipeline {
     agent any
-    options {
-        skipStagesAfterUnstable()
+
+    parameters {
+        string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     }
+
+     environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        REGION = credentials('AWS_REGION')
+    }
+
     stages {
-         stage('Clone repository') { 
-            steps { 
-                script{
-                checkout scm
-                }
-            }
-        }
 
-        stage('Build') { 
-            steps { 
-                script{
-                 app = docker.build("octopus-underwater-app")
-                }
-            }
-        }
-        stage('Test'){
-            steps {
-                 echo 'Empty'
-            }
-        }
-        stage('Push') {
-            steps {
-                script{
-                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
-                    }
-                }
-            }
-        }
-        stage('Deploy'){
-            steps {
-                 sh 'kubectl apply -f deployment.yml'
-            }
-        }
+        stage('Plan') {
 
+            steps {
+                sh 'terraform init -upgrade'
+                sh "terraform validate"
+                sh "terraform plan"
+            }
+        }
+        stage('Approval') {
+           when {
+               not {
+                   equals expected: true, actual: params.autoApprove
+               }
+           }
+           
+           steps {
+               script {
+                    input message: "Do you want to apply the plan01?",
+                    parameters: [text(name: 'Plan', description: 'Please review the plan')]
+
+               }
+           }
+       }
+
+        stage('Apply') {
+            steps {
+                sh "terraform apply --auto-approve"
+            }
+        }
     }
 }
