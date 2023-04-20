@@ -33,7 +33,7 @@ pipeline {
            
            steps {
                script {
-                    input message: "Do you want to apply the plan?",
+                    input message: "Do you want to destroy the plan?",
                     parameters: [text(name: 'Plan', description: 'Please, review the plan01')]
 
                }
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply --auto-approve"
+                sh "terraform destroy --auto-approve"
             }
         }
     }
