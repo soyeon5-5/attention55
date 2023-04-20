@@ -3,7 +3,7 @@ resource "aws_launch_configuration" "web-launchconfig" {
   image_id            = "ami-04cebc8d6c4f297a3"
   instance_type   = "t3.2xlarge"
   security_groups = [aws_security_group.SG-Web.id]
-  key_name        = "web-key"
+  key_name        = "genkins-key"
 user_data = <<-EOF
  #!/bin/bash
  touch /tmp/test
