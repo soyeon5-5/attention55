@@ -5,7 +5,7 @@ resource "aws_launch_template" "web-launch-template" {
   image_id = "ami-0f5610ba8751123f3"
   vpc_security_group_ids = [aws_security_group.SG-Web.id]
   instance_type   = "t3.2xlarge"
-  key_name        = "web-key"
+  key_name        = "genkins-key"
 
   # Required when using a launch configuration with an auto scaling group.
   lifecycle {
