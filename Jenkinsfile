@@ -9,7 +9,7 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        REGION = credentials('AWS_REGION')
+        AWS_REGION = credentials('AWS_REGION')
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "echo terraform plan"
+                sh "echo terraform apply "
                 ///"terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
                 ///-target=aws_launch_template.web-launch-template \
                 ///-target=aws_launch_configuration.terra-launch-config \
