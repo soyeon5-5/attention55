@@ -33,8 +33,12 @@ pipeline {
            
            steps {
                script {
-                    input message: "Do you want to apply the plan?",
+                    input message: "Do you want to apply the plan?11",
+<<<<<<< HEAD
                     parameters: [text(name: 'Plan', description: 'Please, review the plan01!!!OK??')]
+=======
+                    parameters: [text(name: 'Plan', description: 'Please, review the plan01-ec2')]
+>>>>>>> 450bbd52f46b75a9b381abfd8add5b5fdf9e0589
 
                }
            }
