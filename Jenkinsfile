@@ -21,7 +21,7 @@ pipeline {
                 ///sh 'terraform init -upgrade'
                 sh "terraform validate"
                 sh "terraform init"
-                sh "terraform plan"
+                sh "terraform plan -target=aws_launch_template.web-launch-template -target=aws_autoscaling_group.web-asg"
             }
         }
         stage('Approval') {
