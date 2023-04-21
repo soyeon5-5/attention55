@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply -target=aws_autoscaling_group.web-asg2"
+                sh "terraform apply -target=aws_autoscaling_group.web-asg2 --auto-approve"
             }
         }
     }
