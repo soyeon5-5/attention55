@@ -21,7 +21,7 @@ pipeline {
                 ///sh 'terraform init -upgrade'
                 sh "terraform validate"
                 sh "terraform init"
-                sh "terraform plan -target=aws_autoscaling_group.web-asg2"
+                sh "terraform plan"
             }
         }
         stage('Approval') {
@@ -42,7 +42,14 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply -target=aws_autoscaling_group.web-asg2 --auto-approve"
+                sh "terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
+                -target=aws_launch_configuration.terra-launch-config \
+                -target=aws_autoscaling_group.terra-asg \
+                -target=aws_lb.terra-elb \
+                -target=aws_lb_listener.http \
+                -target=aws_lb_target_group.alb-target-group \
+                -target=aws_lb_listener_rule.alb-listner-rule \
+                --auto-approve"
             }
         }
     }

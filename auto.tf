@@ -7,6 +7,11 @@ resource "aws_launch_template" "web-launch-template" {
   instance_type   = "t3.2xlarge"
   key_name        = "genkins-key"
 
+user_data = base64encode(<<EOF2
+#!/bin/bash
+sudo mount -t efs -o tls fs-09e4715f324aef5d6:/ /var/www/html
+EOF
+)
   # Required when using a launch configuration with an auto scaling group.
   lifecycle {
     create_before_destroy = true
@@ -27,7 +32,7 @@ resource "aws_autoscaling_group" "web-asg2" {
 
   tag {
     key                 = "Name"
-    value               = "terra-asg"
+    value               = "web-asg"
     propagate_at_launch = true
   }
 }
