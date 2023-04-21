@@ -7,10 +7,11 @@ resource "aws_launch_template" "web-launch-template" {
   instance_type   = "t3.2xlarge"
   key_name        = "genkins-key"
 
-user_data = <<-EOF2
-#!/bin/bash
-sudo mount -t efs -o tls fs-09e4715f324aef5d6:/ /var/www/html
-EOF
+
+user_data = <<-EOF
+                #!/bin/bash
+                sudo mount -t efs -o tls fs-09e4715f324aef5d6:/ /var/www/html
+                EOF
 
   # Required when using a launch configuration with an auto scaling group.
   lifecycle {
