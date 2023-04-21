@@ -14,7 +14,7 @@ resource "aws_launch_template" "web-launch-template" {
 }
 
 
-resource "aws_autoscaling_group" "web-asg" {
+resource "aws_autoscaling_group" "web-asg2" {
   vpc_zone_identifier  = [aws_subnet.terra-web-a.id, aws_subnet.terra-web-c.id]
   desired_capacity    = 2
   min_size            = 2

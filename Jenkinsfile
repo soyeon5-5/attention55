@@ -21,7 +21,7 @@ pipeline {
                 ///sh 'terraform init -upgrade'
                 sh "terraform validate"
                 sh "terraform init"
-                sh "terraform plan -target=aws_autoscaling_group.web-asg"
+                sh "terraform plan -target=aws_autoscaling_group.web-asg2"
             }
         }
         stage('Approval') {
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply -target=aws_autoscaling_group.web-asg"
+                sh "terraform apply -target=aws_autoscaling_group.web-asg2"
             }
         }
     }
