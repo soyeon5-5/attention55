@@ -37,7 +37,7 @@ pipeline {
 <<<<<<< HEAD
                     parameters: [text(name: 'Plan', description: 'Please, review the plan01!!!OK??')]
 =======
-                    parameters: [text(name: 'Plan', description: 'Please, review the plan01-ec2')]
+                    parameters: [text(name: 'Plan', description: 'Please, review the plan01-ec2.')]
 >>>>>>> 450bbd52f46b75a9b381abfd8add5b5fdf9e0589
 
                }
