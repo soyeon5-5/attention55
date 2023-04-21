@@ -42,11 +42,12 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
-                -target=aws_launch_template.web-launch-template \
-                -target=aws_launch_configuration.terra-launch-config \
-                -target=aws_autoscaling_group.terra-asg \
-                --auto-approve"
+                sh "echo terraform plan"
+                ///"terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
+                ///-target=aws_launch_template.web-launch-template \
+                ///-target=aws_launch_configuration.terra-launch-config \
+                ///-target=aws_autoscaling_group.terra-asg \
+                ///--auto-approve"
             }
         }
     }
