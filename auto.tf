@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "web-asg" {
   min_size            = 2
   max_size            = 4
 
-  target_group_arns = [aws_alb_target_group.alb-target-group.arn]
+  target_group_arns = [aws_lb_target_group.alb-target-group.arn]
 
  launch_template {
          id = aws_launch_template.web-launch-template.id
