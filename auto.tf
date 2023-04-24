@@ -22,11 +22,12 @@ EOF
 }
 
 
-resource "aws_autoscaling_group" "web-asg2" {
+resource "aws_autoscaling_group" "web-asg" {
+  name                = "myweb"
   vpc_zone_identifier  = [aws_subnet.terra-web-a.id, aws_subnet.terra-web-c.id]
   desired_capacity    = 2
   min_size            = 2
-  max_size            = 2
+  max_size            = 4
 
   target_group_arns = [aws_alb_target_group.alb-target-group.arn]
 
