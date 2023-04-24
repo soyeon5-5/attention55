@@ -1,10 +1,10 @@
 resource "aws_instance" "terra-bastion-ubuntu" {
   ami = "ami-04cebc8d6c4f297a3"
-  instance_type = "t3.2xlarge"
+  instance_type = "t3.medium"
 
   subnet_id = aws_subnet.terra-pub-c.id
   associate_public_ip_address = true
-  key_name = "genkins-key"
+  key_name = "attention55"
   vpc_security_group_ids = [aws_security_group.SG-Bastion.id]
   user_data = <<-EOF
                 #!/bin/bash
@@ -26,10 +26,10 @@ resource "aws_instance" "terra-bastion-ubuntu" {
 
 resource "aws_instance" "terra-genkins" {
   ami = "ami-04cebc8d6c4f297a3"
-  instance_type = "t3.2xlarge"
+  instance_type = "t3.medium"
 
   subnet_id = aws_subnet.terra-pub-a.id
-  key_name = "genkins-key"
+  key_name = "attention55"
   vpc_security_group_ids = [aws_security_group.SG-Bastion.id]
   user_data = <<-EOF
                 #!/bin/bash

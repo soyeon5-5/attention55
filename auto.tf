@@ -4,8 +4,8 @@ resource "aws_launch_template" "web-launch-template" {
   description = "terra-web-launchtemplate"
   image_id = "ami-0f5610ba8751123f3"
   vpc_security_group_ids = [aws_security_group.SG-Web.id]
-  instance_type   = "t3.2xlarge"
-  key_name        = "genkins-key"
+  instance_type   = "t3.medium"
+  key_name        = "attention55"
 
 user_data = base64encode(<<EOF
 #!/bin/bash
