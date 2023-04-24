@@ -17,8 +17,8 @@ pipeline {
         stage('Plan') {
 
             steps {
-                ///sh 'terraform init -reconfigure'
-                sh 'terraform init -upgrade'
+                sh 'terraform init -reconfigure'
+                ///sh 'terraform init -upgrade'
                 sh "terraform validate"
                 sh "terraform init"
                 sh "terraform plan"
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "echo terraform apply "
+                sh "terraform apply "
                 ///"terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
                 ///-target=aws_launch_template.web-launch-template \
                 ///-target=aws_launch_configuration.terra-launch-config \
