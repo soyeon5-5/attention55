@@ -42,7 +42,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply "
+                sh "terraform apply --auto-approve"
                 ///"terraform apply -target=aws_autoscaling_group.web-asg2 -target=aws_instance.terra-web-ins \
                 ///-target=aws_launch_template.web-launch-template \
                 ///-target=aws_launch_configuration.terra-launch-config \
