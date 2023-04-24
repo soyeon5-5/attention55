@@ -6,7 +6,6 @@ resource "aws_launch_template" "web-launch-template" {
   vpc_security_group_ids = [aws_security_group.SG-Web.id]
   instance_type   = "t3.medium"
   key_name        = "attention55"
-  target_group_arns = [aws_alb_target_group.alb-target-group.arn]
 
 user_data = base64encode(<<EOF
 #!/bin/bash
@@ -28,6 +27,8 @@ resource "aws_autoscaling_group" "web-asg2" {
   desired_capacity    = 2
   min_size            = 2
   max_size            = 2
+
+  target_group_arns = [aws_alb_target_group.alb-target-group.arn]
 
  launch_template {
          id = aws_launch_template.web-launch-template.id
