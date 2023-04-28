@@ -20,7 +20,7 @@ pipeline {
                 sh 'terraform init -reconfigure'
                 sh "terraform validate"
                 sh "terraform init"
-                sh "terraform plan -destory"
+                sh "terraform plan -destroy"
             }
         }
         stage('Approval') {
