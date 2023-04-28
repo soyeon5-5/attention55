@@ -12,7 +12,12 @@ user_data = base64encode(<<EOF
 sudo apt-get update
 sudo apt-get install apache2 php php-mysql -y
 sudo apt-get install mysql-client -y
-sudo mount -t efs -o tls fs-05cca786546229385:/ /var/www/html
+sudo apt-get update
+git clone https://github.com/aws/efs-utils
+sudo apt-get -y install binutils
+efs-utils/build-deb.sh
+sudo apt-get -y install efs-utils/build/amazon-efs-utils*deb
+
 EOF
 )
   # Required when using a launch configuration with an auto scaling group.
@@ -38,7 +43,7 @@ resource "aws_autoscaling_group" "web-asg" {
 
   tag {
     key                 = "Name"
-    value               = "web-asg"
+    value               = "web"
     propagate_at_launch = true
   }
 }
