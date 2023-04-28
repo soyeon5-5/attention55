@@ -48,27 +48,6 @@ resource "aws_autoscaling_group" "web-asg" {
   }
 }
 
-data "aws_ami" "web" {
-  executable_users = ["self"]
-  most_recent      = true
-  owners           = ["self"]
-
-  filter {
-    name   = "name"
-    values = ["web-*"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 
 
  
