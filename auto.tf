@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "web-asg" {
   }
 }
 
-data "aws_ami" "my_ubuntu" {
+data "aws_ami" "web" {
   executable_users = ["self"]
   most_recent      = true
   owners           = ["self"]
