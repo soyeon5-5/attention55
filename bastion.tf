@@ -4,7 +4,7 @@ resource "aws_instance" "terra-bastion-ubuntu" {
 
   subnet_id = aws_subnet.terra-pub-c.id
   associate_public_ip_address = true
-  key_name = "attention55"
+  key_name = "Attention55"
   vpc_security_group_ids = [aws_security_group.SG-Bastion.id]
   user_data = <<-EOF
                 #!/bin/bash

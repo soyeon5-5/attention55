@@ -5,7 +5,7 @@ resource "aws_launch_template" "web-launch-template" {
   image_id = "ami-04cebc8d6c4f297a3"
   vpc_security_group_ids = [aws_security_group.SG-Web.id]
   instance_type   = "t3.medium"
-  key_name        = "attention55"
+  key_name        = "Attention55"
 
 user_data = base64encode(<<EOF
 #!/bin/bash
