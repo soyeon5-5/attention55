@@ -48,11 +48,9 @@ resource "aws_autoscaling_group" "web-asg" {
   }
 }
 
-
 data "aws_ami" "my_ubuntu" {
   executable_users = ["self"]
   most_recent      = true
-  name_regex       = "^web-\\d{3}"
   owners           = ["self"]
 
   filter {
@@ -70,6 +68,7 @@ data "aws_ami" "my_ubuntu" {
     values = ["hvm"]
   }
 }
+
 
 
  
