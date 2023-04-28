@@ -49,8 +49,27 @@ resource "aws_autoscaling_group" "web-asg" {
 }
 
 
+data "aws_ami" "my_ubuntu" {
+  executable_users = ["self"]
+  most_recent      = true
+  name_regex       = "^web-\\d{3}"
+  owners           = ["self"]
 
+  filter {
+    name   = "name"
+    values = ["web-*"]
+  }
 
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
 
 
  
