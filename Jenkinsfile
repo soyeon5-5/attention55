@@ -20,7 +20,7 @@ pipeline {
                 sh 'terraform init -reconfigure'
                 sh "terraform validate"
                 sh "terraform init"
-                sh "terraform plan -destroy"
+                sh "terraform plan"
             }
         }
         stage('Approval') {
@@ -33,7 +33,7 @@ pipeline {
            steps {
                script {
                     input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please, review the plan final03')]
+                    parameters: [text(name: 'Plan', description: 'Please, review the plan final05')]
 
                }
            }
@@ -41,8 +41,8 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "terraform apply -destroy"
-                //terraform apply --auto-approve"
+                sh "terraform apply --auto-approve"
+                //terraform apply -destroy
 
             }
         }
